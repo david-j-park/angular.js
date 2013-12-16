@@ -1064,10 +1064,13 @@ function snake_case(name, separator){
 }
 
 function bindJQuery() {
-  // bind to jQuery if present;
+  // bind to jQuery if present and at least version 1.7;
   jQuery = window.jQuery;
-  // reset to jQuery or default to us.
-  if (jQuery) {
+  var pts = jQuery.fn.jquery.split('.');
+  var major = parseInt(pts[0]), minor = parseInt(pts[1]);
+  
+  // reset to jQuery or default to u
+  if (jQuery && major >= 1 && minor >= 7) {
     jqLite = jQuery;
     extend(jQuery.fn, {
       scope: JQLitePrototype.scope,
